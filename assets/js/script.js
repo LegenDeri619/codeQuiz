@@ -3,21 +3,33 @@ $(document).ready(function() {
         $("#quiz-field").css("display", "block");
         var hidePlayBtn = $("#play-btn");
         $(this).hide();    
-
+        
         
         var titleDiv = $("<div>");
-        var choicesList = $("<ul>");
+        
+        var userScore = 0;
         
         titleDiv.text(getQuestions[0].title);        
         $("#title-field").append(titleDiv);
         
         for (var i = 0; i < getQuestions[0].choices.length; i++) {
-            choicesList.append("<li><button>" + getQuestions[0].choices[i] + "</button></li>");
-            $("#choices-field").append(choicesList);
-            choicesList.attr("class", "btn-block");
+            var choicesUL = $("<ul>");
+            choicesUL.addClass("choices-list");
+            
+            choicesUL.append(getQuestions[0].choices[i]);
 
-        };        
+            $("#choices-field").append(choicesUL);            
+        };
+        $(".choices-list").on("click", function(){
+            if ($(this).text() === (getQuestions[0].answer)) {
+                alert("yay");
+            }
+                
+            
+            
+        });
         
+
 
     });
 });
