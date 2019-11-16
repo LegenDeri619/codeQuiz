@@ -1,21 +1,28 @@
-$(document).ready(function() {    
+$(document).ready(function() {     
     $("#play-btn").on("click", function(){
         $("#quiz-field").css("display", "block");
         var hidePlayBtn = $("#play-btn");
-        $(this).hide();
+        $(this).hide();    
 
         
-        render();
+        var titleDiv = $("<div>");
+        var choicesList = $("<ul>");
+        
+        titleDiv.text(getQuestions[0].title);        
+        $("#title-field").append(titleDiv);
+        
+        for (var i = 0; i < getQuestions[0].choices.length; i++) {
+            choicesList.append("<li><button>" + getQuestions[0].choices[i] + "</button></li>");
+            $("#choices-field").append(choicesList);
+            choicesList.attr("class", "btn-block");
+
+        };        
+        
 
     });
 });
 
 var getQuestions = JSON.parse(sessionStorage.getItem("storeQuestions"));
-
-function render(){
-    
-    
-};
 
 // start button
 //menu button
