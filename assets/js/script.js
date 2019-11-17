@@ -69,16 +69,31 @@ window.onload = function () {
 //time bar = 100% = green bar
 //render each second red bar: (elapsed time/total time) * 100%
 
-function displayHighScore(score) {
+function displayHighScore() {
     $(".container").empty();
-    localStorage.setItem("userScore", JSON.stringify(highScore));
+    localStorage.getItem("userScore", JSON.parse(highScore));
     $("<h1>").text("High Scores");
-    for (var i = 0; i < userScore.length; i++) {
+    for (var i = 0; i < highScoreObj.length; i++) {
         var userOl = $("<ol>");               
-        userOl.append(userInitals[i] + " --- " + userInitals[i].userScore[i]);
+        userOl.append(highScoreObj.userInitials[i] + " --- " + highScoreObj.userScore[i]);
     };
 };
 
+function getHighScore(){
+    var highScoreObj = {};
+    var userhighScore = [];
+    var userInitials = "";
+
+    if (highScoreObj.score[9]) {
+        alert("Congratulations! You made the Top 10!")
+        userinitals = prompt("Enter your initals");
+        var tempObj = {};
+        tempObj["userInitials"] = userInitials;
+        tempObj["userScore"] = score;
+        highScoreObj.push(tempObj).sort().pop();
+        localStorage.getItem("userScore", JSON.stringify(highScore));
+    }
+};
 
 
 
