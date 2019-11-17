@@ -69,8 +69,14 @@ window.onload = function () {
 //time bar = 100% = green bar
 //render each second red bar: (elapsed time/total time) * 100%
 
-function highScore(score) {
-    
+function displayHighScore(score) {
+    $(".container").empty();
+    localStorage.setItem("userScore", JSON.stringify(highScore));
+    $("<h1>").text("High Scores");
+    for (var i = 0; i < userScore.length; i++) {
+        var userOl = $("<ol>");               
+        userOl.append(userInitals[i] + " --- " + userInitals[i].userScore[i]);
+    };
 };
 
 
