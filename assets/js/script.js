@@ -1,24 +1,21 @@
-
+var getQuestions = JSON.parse(sessionStorage.getItem("storeQuestions"));
 
 $(document).ready(function() {     
     $("#play-btn").on("click", function(){
     $("#quiz-field").css("display", "block");
-    $(this).hide();    
+    $(this).hide();   
+    startTimer(); 
         
         
     var score = 0;
-    var j = 2;
-    var page = (getQuestions.length - j);
+    var j = 0;
 
         //need to build cards sets for each question
         
-    render();
-            //filling question field
-        function render() {    
+            //filling question field           
             var titleDiv = $("<div>"); 
             titleDiv.text(getQuestions[j].title);        
             $("#title-field").append(titleDiv);
-            $("#title-field").attr("z-index", page);
             console.log(j);
 
             //unordered list for answers
@@ -41,27 +38,43 @@ $(document).ready(function() {
                     score--;
                     console.log(score);
                 }
-                $("#results-field").append("Score: " + score);
             });
-
-        };
+            
     });
 });
 
-//function to cycle through z-index
-
 //function for global timer
-//use a progress bar, 
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = 60 * 1,
+        display = document.querySelector('#time');
+    startTimer(oneMinutes, display);
+};
 //time bar = 100% = green bar
 //render each second red bar: (elapsed time/total time) * 100%
 
-//function for question time (optional)
-// number count down
+function highScore(score) {
+    
+};
 
 
 
-
-var getQuestions = JSON.parse(sessionStorage.getItem("storeQuestions"));
 
 // start button
 //menu button
