@@ -17,35 +17,24 @@
       <h1 class="text-center">Coding Quiz</h1>
       <h2 class="text-center">Let's test your coding knowledge</h2>
     </div>
-
-    <button type="button" class="btn btn-success btn-lg" id = "play-btn">Play</button>
-
-    <div id = "quiz-field">  
-
-      <div class="card mt-1">
-        <div class="card-header">
-          <div class="card-body text-center">          
-          <div id="title-field"></div>
-          </div>
-        </div>
-      </div>
     
-      <div class="card mt-1">
-        <div class="card-header">
-          <div class="card-body text-center">
-            <div id ="choices-field"></div>              
-          </div>
-        </div>
-      </div>
-    
-      <div class="card mt-1">
-        <div class="card-header">
-          <div class="card-body text-center">
-            <div id="results-field"></div>
-          </div>
-        </div>    
-      </div>
+    <div class = "container">
+    <button class = "btn" id = "play-btn">Play</button>
+      
+      <div class = "hide" id = "quiz-field">  
+                
+        <div class = "questions" id = "title-field"></div>
+          
+        <div class = "btn-grid" id = "answer-buttons"></div>              
+          <button class = "btn hide"> Answer1 </button>
+          <button class = "btn hide"> Answer2 </button>
+          <button class = "btn hide"> Answer3 </button>
+          <button class = "btn hide"> Answer4 </button>
 
+        <div class = "utilites" id = "results-field"></div>
+          <div id = "timer"></div>
+           
+      </div>
     </div>
   
     

@@ -1,38 +1,65 @@
+
+
 $(document).ready(function() {     
     $("#play-btn").on("click", function(){
-        $("#quiz-field").css("display", "block");
-        var hidePlayBtn = $("#play-btn");
-        $(this).hide();    
+    $("#quiz-field").css("display", "block");
+    $(this).hide();    
         
         
-        var titleDiv = $("<div>");
-        
-        var userScore = 0;
-        
-        titleDiv.text(getQuestions[0].title);        
-        $("#title-field").append(titleDiv);
-        
-        for (var i = 0; i < getQuestions[0].choices.length; i++) {
-            var choicesUL = $("<ul>");
-            choicesUL.addClass("choices-list");
-            
-            choicesUL.append(getQuestions[0].choices[i]);
+    var score = 0;
+    var j = 2;
+    var page = (getQuestions.length - j);
 
-            $("#choices-field").append(choicesUL);            
+        //need to build cards sets for each question
+        
+    render();
+            //filling question field
+        function render() {    
+            var titleDiv = $("<div>"); 
+            titleDiv.text(getQuestions[j].title);        
+            $("#title-field").append(titleDiv);
+            $("#title-field").attr("z-index", page);
+            console.log(j);
+
+            //unordered list for answers
+            for (var i = 0; i < getQuestions[j].choices.length; i++) {
+                var choicesUL = $("<div>");
+                choicesUL.addClass("btn");                
+                choicesUL.append(getQuestions[j].choices[i]);
+                $("#answer-buttons").append(choicesUL);
+                         
+            };
+            //click event to check user's answer to actual answer
+            $(".btn").on("click", function(){
+                console.log(this);
+                if ($(this).text() === (getQuestions[j].answer)) {
+                    score++;
+                    console.log(score);
+                    alert("yay");
+                } 
+                else {
+                    score--;
+                    console.log(score);
+                }
+                $("#results-field").append("Score: " + score);
+            });
+
         };
-        $(".choices-list").on("click", function(){
-            if ($(this).text() === (getQuestions[0].answer)) {
-                alert("yay");
-            }
-                
-            
-            
-        });
-        
-
-
     });
 });
+
+//function to cycle through z-index
+
+//function for global timer
+//use a progress bar, 
+//time bar = 100% = green bar
+//render each second red bar: (elapsed time/total time) * 100%
+
+//function for question time (optional)
+// number count down
+
+
+
 
 var getQuestions = JSON.parse(sessionStorage.getItem("storeQuestions"));
 
@@ -59,7 +86,7 @@ var getQuestions = JSON.parse(sessionStorage.getItem("storeQuestions"));
 //display high scores page
 //  if user makes top scores, prompt user for initials, add user initals and score sorted and store locally
 
-//function for gobal timer for the entire quiz
+//function for global timer for the entire quiz
 
 //function for timer of each question
 
