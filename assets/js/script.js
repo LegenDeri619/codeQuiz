@@ -84,7 +84,7 @@ function getHighScore(){
     var userhighScore = [];
     var userInitials = "";
 
-    if (highScoreObj.score[9]) {
+    if (score > highScoreObj.userScore[9]) {
         alert("Congratulations! You made the Top 10!")
         userinitals = prompt("Enter your initals");
         var tempObj = {};
